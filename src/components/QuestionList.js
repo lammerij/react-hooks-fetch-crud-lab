@@ -10,18 +10,18 @@ function QuestionList() {
       .then((questions) => setQuestions(questions));
   }, []);
 
-  const questionsToDisplay = questions.filter((question) => (question))
-
+  function handleDeleteQuestion() {}
 
   return (
     <section>
       <h1>Quiz Questions</h1>
       <ul>
-        {questionsToDisplay.map((question) => (
-        <QuestionItem 
-        key={question.id}
-        question={question}
-        />
+        {questions.map((q) => (
+          <QuestionItem
+            key={q.id}
+            question={q}
+            handleDeleteQuestion={handleDeleteQuestion}
+          />
         ))}
       </ul>
     </section>

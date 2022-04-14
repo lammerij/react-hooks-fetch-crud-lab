@@ -10,22 +10,6 @@ function QuestionForm(props) {
     correctIndex: 0,
   });
 
-  // function handleQuestionSubmit(event) {
-  //   const questionData = {
-  //     prompt: "",
-  //     answers: [""],
-  //     correctIndex: 0,
-  //   }
-  //     fetch(" http://localhost:4000/questions",
-  //     {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //     },
-  //       body: JSON.stringify(questionData),
-  //     })
-  //   }
-
   function handleChange(event) {
     setFormData({
       ...formData,
@@ -36,17 +20,21 @@ function QuestionForm(props) {
   function handleSubmit(event) {
     event.preventDefault();
     console.log(formData);
-    const questionData = {
-      prompt: "",
-      answers: [""],
-      correctIndex: 0,
-    }
-    fetch(" http://localhost:4000/questions", {
+        fetch(" http://localhost:4000/questions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(questionData),
+      body: JSON.stringify({
+        prompt: formData.prompt,
+        answers: [
+          formData.answer1,
+          formData.answer2,
+          formData.answer3,
+          formData.answer4
+        ],
+        correctIndex: parseInt(formData.correctIndex)
+      }),
     });
   }
 
