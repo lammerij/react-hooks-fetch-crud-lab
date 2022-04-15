@@ -1,7 +1,7 @@
 import React from "react";
 
 
-function QuestionItem({ question, handleDelete}) {
+function QuestionItem({ question, handleDelete, setQuestions}) {
 
   const { id, prompt, answers, correctIndex } = question;
 
@@ -10,6 +10,10 @@ function QuestionItem({ question, handleDelete}) {
       {answer}
     </option>
   ));
+
+  function handleDelete(){
+    setQuestions(id)
+  }
 
   return (
     <li>

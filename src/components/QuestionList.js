@@ -3,8 +3,7 @@ import QuestionItem from "./QuestionItem";
 
 function QuestionList() {
   const [questions, setQuestions] = useState([]);
-  console.log(questions)
-  
+  console.log(questions);
 
   useEffect(() => {
     fetch("http://localhost:4000/questions")
@@ -12,22 +11,31 @@ function QuestionList() {
       .then((questions) => setQuestions(questions));
   }, []);
 
-  function handleDelete(){
+  function handleDelete(id) {
+    console.log("delete");
     fetch(`http://localhost:4000/questions/${questions.id}`, {
-    method: "DELETE",
-})
-  .then((response) => response.json())
-  .then(() => setQuestions(questions))
-}
-
-  
+      method: "DELETE",
+    })
+      .then((response) => response.json())
+      .then(() => {
+        const newQuestionsList = questions.filter((question) => {
+          question.id !== questions.id;
+        });
+      });
+      
+  }
 
   return (
     <section>
       <h1>Quiz Questions</h1>
       <ul>
         {questions?.map((q) => (
-          <QuestionItem key={q.id} question={q} handledelete={handleDelete} />
+          <QuestionItem
+            key={q.id}
+            question={q}
+            handleDelete={handleDelete}
+            setQuestions={setQuestions}
+          />
         ))}
       </ul>
     </section>
