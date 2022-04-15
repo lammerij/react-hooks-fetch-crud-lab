@@ -11,8 +11,8 @@ function QuestionItem({ question, handleDelete, setQuestions}) {
     </option>
   ));
 
-  function handleDelete(){
-    setQuestions(id)
+  function handleDeleteClick(){
+    handleDelete(id)
   }
 
   return (
@@ -23,7 +23,7 @@ function QuestionItem({ question, handleDelete, setQuestions}) {
         Correct Answer:
         <select defaultValue={correctIndex}>{options}</select>
       </label>
-      <button onClick={handleDelete}>Delete Question</button>
+      <button onClick={handleDeleteClick}>Delete Question</button>
     </li>
   );
 }
